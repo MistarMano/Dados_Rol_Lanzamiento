@@ -95,3 +95,40 @@ while opcion_menu != "2":
                 tipo_dado_valido = True
             else:
                 console.print("[red]Elige una opción válida[/red]")
+                cantidad_valida = False
+
+        while not cantidad_valida:
+            cantidad_texto = input(
+                "¿Cuántos dados " + nombre_dado + " quieres lanzar? (máximo " + str(MAX_DADOS) + "): "
+            )
+            try:
+                cantidad_dados = int(cantidad_texto)
+                if cantidad_dados <= 0:
+                    console.print("[red]La cantidad debe ser un número entero positivo.[/red]")
+                elif cantidad_dados > MAX_DADOS:
+                    console.print(
+                        "[red]Solo se pueden lanzar un máximo de " + str(MAX_DADOS) + " dados a la vez.[/red]"
+                    )
+                else:
+                    cantidad_valida = True
+            except ValueError:
+                console.print("[red]Entrada no válida. Introduce un número entero.[/red]")
+                
+        "Animacion de los dados al tirarlos"
+        with Live(console=console, refresh_per_second=10) as animacion:
+            contador_animacion = 0
+            while contador_animacion < 12:
+                valor_animado = random.randint(1, caras_dados)
+                animacion.update(Panel(
+                    "[bold yellow]Lanzando " + str(cantidad_dados) + " x " + nombre_dado + "...[/bold yellow]\n"
+                    "[white]" + str(valor_animado) + "[/white]",
+                    title="Tirando...",
+                    border_style="yellow"
+                ))
+                "Pausa para que se vea los numeros"
+                contador_espera = 0
+                while contador_espera < 3000000:
+                    contador_espera = contador_espera + 1
+
+                contador_animacion = contador_animacion + 1
+        
