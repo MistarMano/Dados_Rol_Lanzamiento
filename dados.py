@@ -132,3 +132,46 @@ while opcion_menu != "2":
 
                 contador_animacion = contador_animacion + 1
         
+        total_tirada = 0
+        resultados_texto = ""
+        contador_dado = 0
+
+        while contador_dado < cantidad_dados:
+            valor_obtenido = random.randint(1, caras_dados)
+            total_tirada = total_tirada + valor_obtenido
+
+            if valor_obtenido == caras_dados:
+                color_resultado = "green"
+            elif valor_obtenido == 1:
+                color_resultado = "red"
+            else:
+                color_resultado = "yellow"
+
+            resultados_texto = (
+                resultados_texto
+                + "Dado " + str(contador_dado + 1) + ": "
+                + "[bold " + color_resultado + "]" + str(valor_obtenido) + "[/bold " + color_resultado + "]\n"
+            )
+
+            contador_dado = contador_dado + 1
+
+        promedio_tirada = total_tirada / cantidad_dados
+
+        resultados_texto = (
+            resultados_texto
+            + "\n[bold white]Total:[/bold white] " + str(total_tirada) + "\n"
+            + "[bold white]Promedio:[/bold white] " + str(round(promedio_tirada, 2))
+        )
+
+        console.print(Panel(
+            resultados_texto,
+            title="Resultado de la tirada (" + str(cantidad_dados) + " x " + nombre_dado + ")",
+            border_style="green"
+        ))
+
+    elif opcion_menu_numero == 2:
+        console.print("[bold cyan]Suerte en la siguientes tiradas[/bold cyan]")
+        opcion_menu = "2"
+
+    else:
+        console.print("[red]Opción no válida. Elige 1 o 2.[/red]")
