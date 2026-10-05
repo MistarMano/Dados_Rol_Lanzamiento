@@ -94,7 +94,8 @@ while opcion_menu != "2":
                 tipo_dado_valido = True
             else:
                 console.print("[red]Elige una opción válida[/red]")
-                cantidad_valida = False
+
+        cantidad_valida = False
 
         while not cantidad_valida:
             cantidad_texto = input(
@@ -173,7 +174,7 @@ while opcion_menu != "2":
         opcion_menu = "2"
         
     elif opcion_menu_numero == 3:
-        #Aqui iria coigo para implementar  nuevo boton
+        #Aqui iria codigo para implementar  nuevo boton
         pass
 
     else:
