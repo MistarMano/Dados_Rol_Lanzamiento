@@ -171,6 +171,10 @@ while opcion_menu != "2":
     elif opcion_menu_numero == 2:
         console.print("[bold cyan]Suerte en la siguientes tiradas[/bold cyan]")
         opcion_menu = "2"
+        
+    elif opcion_menu_numero == 3:
+        #Aqui iria coigo para implementar  nuevo boton
+        pass
 
     else:
         console.print("[red]Opción no válida. Elige 1 o 2.[/red]")
