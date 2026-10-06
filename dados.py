@@ -13,22 +13,21 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.live import Live
 
-"Constantes: número de caras de cada tipo de dado disponible"
+#Constantes: número de caras de cada tipo de dado disponible
 DADO_D4 = 4
 DADO_D6 = 6
 DADO_D8 = 8
 DADO_D10 = 10
 DADO_D12 = 12
 DADO_D20 = 20
-
+#Numero máximo de dados que se pueden lanzar a la vez
 MAX_DADOS = 5
 
 console = Console()
 
-"Menu principal"
 
 opcion_menu = ""
-
+#Bucle principal del programa, se repite hasta que el usuario elige salir
 while opcion_menu != "2":
 
     console.print(Panel(
@@ -45,7 +44,7 @@ while opcion_menu != "2":
         opcion_menu = ""
         continue
     
-    "Menu de tipo de dado que quieres"
+    #Menu de tipo de dado que quieres lanzar y cantidad de dados a lanzar
     
     if opcion_menu_numero == 1:
         console.print(Panel(
@@ -68,7 +67,7 @@ while opcion_menu != "2":
             except ValueError:
                 console.print("[red]Debes introducir un número[/red]")
                 continue
-
+            #Determina el tipo de dado y el número de caras según la opción elegida por el usuario
             if tipo_dado == 1:
                 caras_dados = DADO_D4
                 nombre_dado = "D4"
@@ -95,7 +94,8 @@ while opcion_menu != "2":
                 tipo_dado_valido = True
             else:
                 console.print("[red]Elige una opción válida[/red]")
-                cantidad_valida = False
+
+        cantidad_valida = False
 
         while not cantidad_valida:
             cantidad_texto = input(
@@ -114,7 +114,7 @@ while opcion_menu != "2":
             except ValueError:
                 console.print("[red]Entrada no válida. Introduce un número entero.[/red]")
                 
-        "Animacion de los dados al tirarlos"
+        #Animacion de los dados al tirarlos que muestra un número aleatorio entre 1 y el número de caras del dado elegido
         with Live(console=console, refresh_per_second=10) as animacion:
             contador_animacion = 0
             while contador_animacion < 12:
@@ -125,13 +125,13 @@ while opcion_menu != "2":
                     title="Tirando...",
                     border_style="yellow"
                 ))
-                "Pausa para que se vea los numeros"
+                #Pausa para que la animación se vea durante un tiempo antes de mostrar el resultado final
                 contador_espera = 0
                 while contador_espera < 3000000:
                     contador_espera = contador_espera + 1
 
                 contador_animacion = contador_animacion + 1
-        
+        #Se genera el resultado final de la tirada, mostrando el valor de cada dado, el total y el promedio
         total_tirada = 0
         resultados_texto = ""
         contador_dado = 0
@@ -172,6 +172,10 @@ while opcion_menu != "2":
     elif opcion_menu_numero == 2:
         console.print("[bold cyan]Suerte en la siguientes tiradas[/bold cyan]")
         opcion_menu = "2"
+        
+    elif opcion_menu_numero == 3:
+        #Aqui iria codigo para implementar  nuevo boton
+        pass
 
     else:
         console.print("[red]Opción no válida. Elige 1 o 2.[/red]")
